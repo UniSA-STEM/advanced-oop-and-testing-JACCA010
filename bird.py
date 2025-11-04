@@ -29,10 +29,16 @@ class Bird:
 
     def bird_eat(self):
         bird_eat = 0
+
         while bird_eat(self) < Animal.max_food():
             bird_eat +=1
 
-        print f"{self.__name} has eaten {Animal.max_food()} food."
-        print f"Please refill food."
+        if bird_eat(self) == Animal.max_food():
+            print (f"{self.__name} has eaten all the food.")
+            print (f"Please refill food.")
+
+        else:
+            print (f"Yummy!")
+
 
 
