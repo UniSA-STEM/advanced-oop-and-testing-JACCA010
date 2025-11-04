@@ -26,43 +26,43 @@ class Animal:
     # create setters and getters within animal class
 
     def set_name(self, name):
-        self.__name = name
+        self.__name = input("Enter name: ")
 
     def get_name(self):
         return self.__name
 
     def set_species(self, species):
-        self.__species = species
+        self.__species = input("Enter species: ")
 
     def get_species(self):
         return self.__species
 
     def set_animal_group(self, animal_group):
-        self.__animal_group = animal_group
+        self.__animal_group = input("Select animal group: ")
 
     def get_animal_group(self):
         return self.__animal_group
 
     def set_age(self, age):
-        self.__age = age
+        self.__age = input("Enter age: ")
 
     def get_age(self):
         return self.__age
 
     def set_dietary_requirement(self, dietary_requirement):
-        self.__dietary_requirement = dietary_requirement
+        self.__dietary_requirement = input("Enter dietary requirements: ")
 
     def get_dietary_requirement(self):
         return self.__dietary_requirement
 
     def set_enclosure(self, enclosure):
-        self.__enclosure = enclosure
+        self.__enclosure = input("Select enclosure: ")
 
     def get_enclosure(self):
         return self.__enclosure
 
     def set_cry(self, cry):
-        self.__cry = cry
+        self.__cry = cry  # to be drawn from child class
 
     def get_cry(self):
         return self.__cry
