@@ -67,6 +67,13 @@ class Animal:
     def get_cry(self):
         return self.__cry
 
+    def max_food(self):
+        max_food = 3
+        return max_food
+
+
+
+
 
 
 

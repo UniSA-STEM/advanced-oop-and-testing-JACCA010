@@ -7,7 +7,9 @@ Username: jacca010
 This is my own work as defined by the University's Academic Integrity Policy.
 '''
 
-from animal import Animal  # Parent Class will require removal of duplicate code in child class
+
+# Parent Class will require removal of duplicate code in child class
+from animal import Animal
 
 class Bird:
     def __init__(self, name, species, animal_group, age, dietary_requirement,enclosure, cry):
@@ -20,4 +22,17 @@ class Bird:
         self.__cry = cry("Squawk")
 
     # Bird child class with predefined attributes noting this does not include birds of prey
+
+    # method for eating which will also reduce available food by 1 unit and require refill at 0 units
+    # to increase enclosure mess by 1 unit (num units for cleaning enclosure to be max 3)
+    # max food units to be set at three
+
+    def bird_eat(self):
+        bird_eat = 0
+        while bird_eat(self) < Animal.max_food():
+            bird_eat +=1
+
+        print f"{self.__name} has eaten {Animal.max_food()} food."
+        print f"Please refill food."
+
 
