@@ -67,10 +67,12 @@ class Animal:
     def get_cry(self):
         return self.__cry
 
+    # max food for all animals has been set to three.
+    # for future iterations of the zoo management system this can be amended if required
+
     def max_food(self):
         max_food = 3
         return max_food
-
 
 
 
