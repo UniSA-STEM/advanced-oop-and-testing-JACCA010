@@ -85,13 +85,13 @@ class Animal(ABC):
     # method for eating which will also reduce available food by 1 unit and require refill at 0 units
     # to increase enclosure mess by 1 unit (num units for cleaning enclosure to be max 3)
 
-    def eat(self)
+    def eat(self):
         eat = 0
 
-        while eat < max_food():
+        while eat < max_food:
             eat += 1
 
-        if eat == max_food():
+        if eat == max_food:
             print(f"{self.__name} has eaten all the food.")
             print(f"Please refill food.")
 

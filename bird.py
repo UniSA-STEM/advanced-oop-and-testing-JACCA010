@@ -20,7 +20,7 @@ class Bird(Animal):
             sound = "Quack"
         elif self.species == "owl":
             sound = "Hoot"
-        elif self.species == None:
+        else:
             sound = "Chirrup"
         print (f"{self.get_name()} {sound}s!")
 
