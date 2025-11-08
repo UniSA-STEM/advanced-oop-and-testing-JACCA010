@@ -7,7 +7,9 @@ Username: jacca010
 This is my own work as defined by the University's Academic Integrity Policy.
 '''
 
-class Animal:
+from abc import ABC, abstractmethod    # adding abstract method into parent class
+
+class Animal(ABC):
     def __init__(self, name, species, animal_group, age, dietary_requirement, enclosure, cry):
         self.__name = name
         self.__species = species
@@ -25,37 +27,37 @@ class Animal:
 
     # create setters and getters within animal class
 
-    def set_name(self, name):
+    def set_name(self):    # each animal will have a name eg spot, spike, George etc
         self.__name = input("Enter name: ")
 
     def get_name(self):
         return self.__name
 
-    def set_species(self, species):
+    def set_species(self, species):    # each animal will be part of a species eg parrot and owl are avian species, snake and lizard are reptile species
         self.__species = input("Enter species: ")
 
     def get_species(self):
         return self.__species
 
-    def set_animal_group(self, animal_group):
+    def set_animal_group(self, animal_group):    # eg avian, aquatic, reptile, big cat etc
         self.__animal_group = input("Select animal group: ")
 
     def get_animal_group(self):
         return self.__animal_group
 
-    def set_age(self, age):
+    def set_age(self, age):    # at entry each animal will have an age
         self.__age = input("Enter age: ")
 
     def get_age(self):
         return self.__age
 
-    def set_dietary_requirement(self, dietary_requirement):
+    def set_dietary_requirement(self, dietary_requirement):    # each animal will have a dietary requirement eg seeds and fruit, mice and rats, meat etc
         self.__dietary_requirement = input("Enter dietary requirements: ")
 
     def get_dietary_requirement(self):
         return self.__dietary_requirement
 
-    def set_enclosure(self, enclosure):
+    def set_enclosure(self, enclosure):    # each animal will have an enclosure type
         self.__enclosure = input("Select enclosure: ")
 
     def get_enclosure(self):
@@ -67,12 +69,33 @@ class Animal:
     def get_cry(self):
         return self.__cry
 
-    # max food for all animals has been set to three.
-    # for future iterations of the zoo management system this can be amended if required
+    # max food for all animals has been set to three before refill and enclosure clean will be initiated
 
     def max_food(self):
         max_food = 3
         return max_food
+
+    def enclosure_clean(self):
+        pass    # to be defined
+
+    def refill_food(self):
+        pass    # to be defined
+
+    @abstractmethod
+    def eat(self):
+        pass    # to be defined in child class
+
+    @abstractmethod
+    def cry(self):
+        pass    # to be defined in child class
+
+    @abstractmethod
+    def move(self):
+        pass    # to be defined in child class
+
+    @abstractmethod
+    def sleep(self):    # to be defined in child class
+        pass
 
 
 
