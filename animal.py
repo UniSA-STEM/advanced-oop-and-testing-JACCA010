@@ -71,15 +71,10 @@ class Animal(ABC):
 
     # max food for all animals has been set to three before refill and enclosure clean will be initiated
 
-    def max_food(self):
-        max_food = 3
-        return max_food
+    def enclosure_status(self):    # enclosure clean to be made an abstract method.  Enclosure status will be linked to eat.
+        self._enclosure_status = 3
+        return self._enclosure_status
 
-    def enclosure_clean(self):
-        pass    # to be defined
-
-    def refill_food(self):
-        pass    # to be defined
 
     # will be consistent method across all animals.  Holding in parent class avoids duplication of code.
     # method for eating which will also reduce available food by 1 unit and require refill at 0 units
@@ -87,9 +82,11 @@ class Animal(ABC):
 
     def eat(self):
         eat = 0
+        enclosure_status = 3    # to allow for status reduction as eat increases
 
         while eat < self.max_food():
             eat += 1
+            enclosure_status -= 1
 
         if eat == self.max_food():
             print(f"{self.__name} has eaten all the food.")
@@ -97,6 +94,9 @@ class Animal(ABC):
 
         else:
             print(f"Yummy!")
+
+        if self._enclosure_status == 0:
+            print (f"{self.__name}'s {self.__enclosure} is messy. Please clean before next feed.")
 
     @abstractmethod
     def cry(self):
@@ -110,8 +110,16 @@ class Animal(ABC):
     def sleep(self):    # to be defined in child class
         pass
 
+    @abstractmethod
+    def enclosure_clean(self):    # to be added to zoo keeper class
+        pass
 
+    @abstractmethod
+    def refill_food(self):    # to be added to zoo keeper class
+        pass
 
-
+    @property    # amended max food to property
+    def max_food(self):
+        return 3
 
 
