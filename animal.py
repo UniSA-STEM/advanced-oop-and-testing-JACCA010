@@ -88,10 +88,10 @@ class Animal(ABC):
     def eat(self):
         eat = 0
 
-        while eat < max_food:
+        while eat < self.max_food():
             eat += 1
 
-        if eat == max_food:
+        if eat == self.max_food():
             print(f"{self.__name} has eaten all the food.")
             print(f"Please refill food.")
 
