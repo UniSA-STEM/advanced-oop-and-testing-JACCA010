@@ -7,55 +7,39 @@ Username: jacca010
 This is my own work as defined by the University's Academic Integrity Policy.
 '''
 
-
-# Parent Class will require removal of duplicate code in child class
 from animal import Animal
 
-class Reptile:
+class Reptile(Animal):
     def __init__(self, name, species, animal_group, age, dietary_requirement,enclosure, cry):
-        self.__name = name
-        self.__species = species
-        self.__animal_group = animal_group("Reptile")
-        self.__age = age
-        self.__dietary_requirement = dietary_requirement # to be defined based on species
-        self.__enclosure = enclosure("Reptile Tank")
-        self.__cry = cry # to be defined based on species
+        super().__init__(name, species, animal_group, age, dietary_requirement, enclosure, cry)
 
-    # Reptile child class with predefined attributes
-
-    # method for eating which will also reduce available food by 1 unit and require refill at 0 units
-    # to increase enclosure mess by 1 unit (num units for cleaning enclosure to be max 3)
-    # max food units to be set at three
-
-    def reptile_eat(self):
-        reptile_eat = 0
-
-        while reptile_eat < Animal.max_food():
-            reptile_eat +=1
-
-        if reptile_eat == Animal.max_food():
-            print (f"{self.__name} has eaten all the food.")
-            print (f"Please prepare more food.")
-
+    def cry(self):    # to be made species dependant and allow for edits as new animals added
+        if self.get_species == "snake":
+            sound = "Hiss"
+        elif self.get_species == "lizard":
+            sound = "Click"
+        elif self.get_species == "crocodile":
+            sound = "Growl"
         else:
-            print (f"Yummy!")
+            sound = "Puff"
+        print (f"{self.get_name()} {sound}s!")
 
-    # dietary requirement for reptiles will be Mice for Snakes and Worms and Bugs for all other reptiles
-
-    def dietary_requirement(self):
-        if self.__species == "Snake":
-            self.__dietary_requirement = "Mice"
-
+    def move(self):    # simple movements based on species type
+        if self.get_species == "snake":
+            print (f"{self.get_name()} is slithering.")
+        elif self.get_species == "crocodile":
+            print (f"{self.get_name()} is stalking.")
         else:
-            self.__dietary_requirement = "Bugs and Worms"
+            print (f"{self.get_name()} is walking.")
 
-        return self.__dietary_requirement
-
-    def cry(self):
-        if self.__species == "Snake":
-            self.__cry = "Hiss"
-
+    def sleep(self):    # simple sleep based on species type
+        if self.get_species == "snake":
+            print (f"{self.get_name()} has coiled up and is sleeping.")
         else:
-            self.__cry = "Chitter"
+            print (f"{self.get_name()} is sleeping.")
 
-        return self.__cry
+    def sunning(self):    # reptiles like to rest in the sun
+        if self.get_species == "snake" or self.get_species == "lizard":
+            print (f"{self.get_name()} is resting on a sunny rock.")
+        else:
+            print (f"{self.get_name()} is warming itself in the sun.")
