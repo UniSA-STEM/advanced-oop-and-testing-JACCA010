@@ -110,14 +110,6 @@ class Animal(ABC):
     def sleep(self):    # to be defined in child class
         pass
 
-    @abstractmethod
-    def enclosure_clean(self):    # to be added to zoo keeper class
-        pass
-
-    @abstractmethod
-    def refill_food(self):    # to be added to zoo keeper class
-        pass
-
     @property    # amended max food to property
     def max_food(self):
         return 3
