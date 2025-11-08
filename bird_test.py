@@ -21,7 +21,7 @@ class TestBird(unittest.TestCase):
     def test_default_cry(self):
         bird = Bird(name="Chirpy", species=None, animal_group="avian", age=1,
                     dietary_requirement="fruit", enclosure="aviary", cry=None)
-        bird.cry()  # Should print "Chirpy says Chirrup!"
+        bird.cry()  # Should print "Chirpy Chirrups!"
 
 
 if __name__ == '__main__':

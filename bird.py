@@ -14,11 +14,11 @@ class Bird(Animal):
         super().__init__(name, species, animal_group, age, dietary_requirement, enclosure, cry)
 
     def cry(self):    # to be made species dependant and allow for edits as new animals added
-        if self.species == "parrot":
+        if self.get_species == "parrot":
             sound = "Squawk"
-        elif self.species == "duck":
+        elif self.get_species == "duck":
             sound = "Quack"
-        elif self.species == "owl":
+        elif self.get_species == "owl":
             sound = "Hoot"
         else:
             sound = "Chirrup"
@@ -28,7 +28,7 @@ class Bird(Animal):
         print (f"{self.get_name()} is flapping its wings!")    # valid also for non-flight birds
 
     def sleep(self):
-        if self.species != "owl":    # given owls hunt at night and sleep during the day have created day/night sleep.
+        if self.get_species != "owl":    # given owls hunt at night and sleep during the day have created day/night sleep.
             print (f"{self.get_name()} has perched for the night.")
         else:
             print (f"{self.get_name()} has perched for the day.")
