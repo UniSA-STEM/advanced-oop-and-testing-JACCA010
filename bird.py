@@ -7,38 +7,33 @@ Username: jacca010
 This is my own work as defined by the University's Academic Integrity Policy.
 '''
 
-
-# Parent Class will require removal of duplicate code in child class
 from animal import Animal
 
-class Bird:
+class Bird(Animal):
     def __init__(self, name, species, animal_group, age, dietary_requirement,enclosure, cry):
-        self.__name = name
-        self.__species = species
-        self.__animal_group = animal_group("Avian")
-        self.__age = age
-        self.__dietary_requirement = dietary_requirement("Seeds and Fruit")
-        self.__enclosure = enclosure("Aviary")
-        self.__cry = cry("Squawk")
+        super().__init__(name, species, animal_group, age, dietary_requirement, enclosure, cry)
 
-    # Bird child class with predefined attributes noting this does not include birds of prey
+    @property
+    def cry(self):    # to be made species dependant and allow for edits as new animals added
+        if self.species == "parrot":
+            return "Squawk"
+        elif self.species == "duck":
+            return "Quack"
+        elif self.species == "owl":
+            return "Hoot"
+        elif self.species == None:
+            return "Chirrup"
+        print (f"{self.cry}!")
 
-    # method for eating which will also reduce available food by 1 unit and require refill at 0 units
-    # to increase enclosure mess by 1 unit (num units for cleaning enclosure to be max 3)
-    # max food units to be set at three
+    @property
+    def move(self):
+        print (f"{self.name} is flapping its wings!")    # valid also for non-flight birds
 
-    def bird_eat(self):
-        bird_eat = 0
-
-        while bird_eat < Animal.max_food():
-            bird_eat +=1
-
-        if bird_eat == Animal.max_food():
-            print (f"{self.__name} has eaten all the food.")
-            print (f"Please refill food.")
-
+    @property
+    def sleep(self):
+        if self.species !- "owl":    # given owls hunt at night and sleep during the day have created day/night sleep.
+            print (f"{self.name} has perched for the night.")
         else:
-            print (f"Yummy!")
+            print (f"{self.name} has perched for the day.")
 
-
-
+        # future iteration of zoo management system could include nocturnal animals as a separate class
