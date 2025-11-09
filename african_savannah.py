@@ -32,13 +32,15 @@ class African_Savannah(Animal):
         self.__african_species = species
 
     def __str__(self):    # adding string method
-        return f"{self.get_name()} the {self.get_species()} lives in enclosure {self.get_enclosure()} and cries '{self.cry()}'."
+        return f"{self.get_name()} the {self.get_species()} lives in enclosure {self.get_enclosure()} and cries '{self.get_cry()}'."
 
     def cry(self):
         sound = self.african_species_dict.get(self.get_species(), {}).get("cry", "Vocalise")
-        print (f"{self.get_name()} {sound}s!")
+        return (f"{self.get_name()} {sound}s!")
 
     def move(self):    # simple movements based on species type
         action = self.african_species_dict.get(self.get_species(), {}).get("move", "walking")
-        print (f"{self.get_name()} is {action}!")
+        return (f"{self.get_name()} is {action}!")
 
+    def sleep(self):    # simple implementation of sleep
+        print (f"{self.get_name()} is sleeping.")
