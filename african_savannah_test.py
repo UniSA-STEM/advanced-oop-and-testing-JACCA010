@@ -1,6 +1,6 @@
 '''
-File: reptile_test.py
-Description: Test file for reptile_test.
+File: african_savannah_test.py
+Description: Special African Savannah test file to incorporate dictionary
 Author: Catherine Jackson
 ID: 110481962
 Username: jacca010
@@ -8,12 +8,12 @@ This is my own work as defined by the University's Academic Integrity Policy.
 '''
 
 import unittest
-from reptile import Reptile
+from african_savannah import African_Savannah
 
-class TestReptile(unittest.TestCase):
+class TestAfrican_Savannah(unittest.TestCase):
 
-    def test_tortoise_cry(self):
-        reptile = Reptile(name="Sleepy", species="tortoise", animal_group="reptile", age=32,
+    def test_lion_cry(self):
+        african_savannah = African_Savannah(name="Sleepy", species="tortoise", animal_group="reptile", age=32,
                     dietary_requirement="green leaves", enclosure="pond", cry=None)
         reptile.cry()    # Should print "Sleepy Puffs!"
 
@@ -37,3 +37,9 @@ class TestReptile(unittest.TestCase):
                     dietary_requirement="mice", enclosure="rock bed", cry=None)
         reptile.sleep()    # Should print "Simon has coiled up and is sleeping."
 
+    if species not in self.african_species_dict:
+        raise ValueError(f"{species} is not recognized as an African savannah species.")
+
+
+if __name__ == '__main__':
+    unittest.main()

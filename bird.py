@@ -14,6 +14,9 @@ class Bird(Animal):
         super().__init__(name, species, animal_group, age, dietary_requirement, enclosure, cry)
         self.__flight_ability = flight_ability
 
+    def __str__(self):    # adding string method
+        return f"{self.get_name()} the {self.get_species()} lives in enclosure {self.get_enclosure()} and cries '{self.cry()}'."
+
     def cry(self):    # to be made species dependant and allow for edits as new animals added
         if self.get_species() == "parrot":
             sound = "Squawk"
