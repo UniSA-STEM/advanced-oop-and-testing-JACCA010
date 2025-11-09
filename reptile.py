@@ -18,8 +18,10 @@ class Reptile(Animal):
             sound = "Hiss"
         elif self.get_species == "lizard":
             sound = "Click"
-        elif self.get_species == "crocodile":
+        elif self.get_species == "crocodile" or self.get_species == "alligator":
             sound = "Growl"
+        elif self.get_species == "frog" or self.get_species == "toad":
+            sound = "Ribbet"
         else:
             sound = "Puff"
         print (f"{self.get_name()} {sound}s!")
