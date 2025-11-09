@@ -14,11 +14,11 @@ class Bird(Animal):
         super().__init__(name, species, animal_group, age, dietary_requirement, enclosure, cry)
 
     def cry(self):    # to be made species dependant and allow for edits as new animals added
-        if self.get_species == "parrot":
+        if self.get_species() == "parrot":
             sound = "Squawk"
-        elif self.get_species == "duck":
+        elif self.get_species() == "duck":
             sound = "Quack"
-        elif self.get_species == "owl":
+        elif self.get_species() == "owl":
             sound = "Hoot"
         else:
             sound = "Chirrup"
