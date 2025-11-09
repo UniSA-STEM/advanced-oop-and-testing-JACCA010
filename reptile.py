@@ -20,7 +20,7 @@ class Reptile(Animal):
             sound = "Click"
         elif self.get_species() == "crocodile" or self.get_species == "alligator":
             sound = "Growl"
-        elif self.get_species() == "frog" or self.get_species == "toad":
+        elif self.get_species() == "frog" or self.get_species == "toad":    # although amphibian have included in this class for test purposes
             sound = "Ribbet"
         else:
             sound = "Puff"
