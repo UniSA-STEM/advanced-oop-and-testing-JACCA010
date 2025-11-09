@@ -37,6 +37,14 @@ class Zoo:
     def list_animals(self):    # returns list of animals in zoo
         print(self.__str__())
 
+    # count of animals in enclosures (to help measure enclosure capacity)
+    def count_animals(self):
+        count = 0
+        for animal in self.animals:
+            if hasattr(animal, "enclosure") and animal.enclosure is not None:
+                count += 1
+        return count
+
     def __str__(self):
         output = [f"Animals in {self.name}:"]
         for a in self.animals:
