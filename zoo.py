@@ -41,7 +41,7 @@ class Zoo:
         output = [f"Animals in {self.name}:"]
         for a in self.animals:
             output.append(
-                f"- [ID {a.get_animal_id()}]\n"
+                f"\n- [ID {a.get_animal_id()}]\n"
                 f"  Name: {a.get_name()}\n"
                 f"  Species: {a.get_species()}\n"
                 f"  Animal Group: {a.get_animal_group()}"

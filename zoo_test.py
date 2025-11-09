@@ -1,3 +1,13 @@
+'''
+File: zoo_test.py
+Description: Test file for zoo_test.
+Author: Catherine Jackson
+ID: 110481962
+Username: jacca010
+This is my own work as defined by the University's Academic Integrity Policy.
+'''
+
+
 import unittest
 from zoo import Zoo
 from animal import Animal
@@ -40,16 +50,18 @@ class TestZooClass(unittest.TestCase):
         self.zoo.add_animal(self.animal2)
         expected = (
             f"Animals in Cats Zoo:\n"
-            f"- [ID {self.animal1.get_animal_id()}]\n"
+            f"\n- [ID {self.animal1.get_animal_id()}]\n"
             f"  Name: Leo\n"
             f"  Species: Lion\n"
             f"  Animal Group: African Savannah\n"
-            f"- [ID {self.animal2.get_animal_id()}]\n"
+            f"\n- [ID {self.animal2.get_animal_id()}]\n"
             f"  Name: Polly\n"
             f"  Species: Parrot\n"
             f"  Animal Group: Avian"
         )
         self.assertEqual(str(self.zoo), expected)
+        print(str(self.zoo))
+
 
 if __name__ == "__main__":
     unittest.main()
