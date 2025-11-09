@@ -24,6 +24,7 @@ class Animal(ABC):
         self.__enclosure = enclosure
         self.__cry = cry
         self.__enclosure_status = 3    # initialise at maximum cleanliness
+        self.__food_units = 0    # so that animals can be fed
 
     # animal class includes attributes applicable to all animals regardless of species.
     # purpose is to capture attributes which are going to be consistently used and will
@@ -77,14 +78,14 @@ class Animal(ABC):
     # cry
 
     def set_cry(self, cry):
-        self._cry = cry
+        self.__cry = cry
 
     def get_cry(self):
-        return self._cry
+        return self.__cry
 
     # enclosure status
     def get_enclosure_status(self):
-        return self._enclosure_status
+        return self.__enclosure_status
 
     # will be consistent method across all animals.  Holding in parent class avoids duplication of code.
     # method for eating which will also reduce available food by 1 unit and require refill at 0 units
@@ -92,21 +93,16 @@ class Animal(ABC):
     # max food for all animals has been set to three before refill and enclosure clean will be initiated
 
     def eat(self):
-        eat = 0
-        enclosure_status = 3    # to allow for status reduction as eat increases
-
-        while eat < self.max_food():
-            eat += 1
-            enclosure_status -= 1
-
-        if eat == self.max_food():
+        if self.__food_units < self.max_food:
+            self.__food_units += 1    # food level increases until max food reached
+            self.__enclosure_status -= 1    # enclosure cleanliness decreases
+            print (f"Yummy!")
+        else:
             print(f"{self.__name} has eaten all the food.")
             print(f"Please refill food.")
 
-        else:
-            print(f"Yummy!")
-
-        if self._enclosure_status == 0:
+        # check enclosure status for cleaning
+        if self.__enclosure_status == 0:
             print (f"{self.__name}'s {self.__enclosure} is messy. Please clean before next feed.")
 
     @abstractmethod

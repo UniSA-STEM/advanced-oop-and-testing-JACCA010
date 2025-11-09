@@ -1,8 +1,10 @@
 import unittest
+
 from animal import Animal
 
 # Mock child class for testing purposes only
-class TestAnimal(Animal):
+
+class MockAnimal(Animal):
     def cry(self):
         return "Test cry"
 
@@ -15,18 +17,19 @@ class TestAnimal(Animal):
 class TestAnimalClass(unittest.TestCase):
 
     def setUp(self):
-        self.animal = TestAnimal(
+        self.animal = MockAnimal(
             name="Sample",
             species="SampleSpecies",
             animal_group="SampleGroup",
             age=5,
             dietary_requirement="SampleFood",
-            enclosure="SampleEnclosure"
+            enclosure="SampleEnclosure",
+            cry="SampleCry"
         )
 
     def test_unique_id(self):
         id1 = self.animal.get_animal_id()
-        id2 = TestAnimal("A", "B", "C", 1, "D", "E").get_animal_id()
+        id2 = MockAnimal("A", "B", "C", 1, "D", "E","AnotherCry").get_animal_id()
         self.assertNotEqual(id1, id2)
 
     def test_getters(self):
@@ -35,7 +38,7 @@ class TestAnimalClass(unittest.TestCase):
         self.assertEqual(self.animal.get_enclosure(), "SampleEnclosure")
 
     def test_enclosure_status_initial(self):
-        self.assertEqual(self.animal.get_enclosure_status(), 3)
+        self.assertEqual(self.animal._Animal__enclosure_status, 3)
 
     def test_eat(self):
         self.animal.eat()
