@@ -5,7 +5,7 @@ class TestReptile(unittest.TestCase):
 
     def test_tortoise_cry(self):
         reptile = Reptile(name="Sleepy", species="tortoise", animal_group="reptile", age=32,
-                    dietary_requirement="green leaves", enclosure="pond", cry=None)32
+                    dietary_requirement="green leaves", enclosure="pond", cry=None)
         reptile.cry()  # Should print "Sleepy Puffs!"
 
     def test_tortoise_cry(self):

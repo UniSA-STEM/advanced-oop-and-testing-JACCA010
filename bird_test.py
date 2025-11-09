@@ -1,6 +1,11 @@
 import unittest
 from bird import Bird
 
+if __name__ == '__main__':
+    unittest.main()
+
+
+
 class TestBird(unittest.TestCase):
 
     def test_parrot_cry(self):
@@ -22,8 +27,3 @@ class TestBird(unittest.TestCase):
         bird = Bird(name="Chirpy", species=None, animal_group="avian", age=1,
                     dietary_requirement="fruit", enclosure="aviary", cry=None)
         bird.cry()  # Should print "Chirpy Chirrups!"
-
-
-if __name__ == '__main__':
-    unittest.main()
-
