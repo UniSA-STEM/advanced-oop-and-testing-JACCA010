@@ -10,75 +10,77 @@ This is my own work as defined by the University's Academic Integrity Policy.
 from abc import ABC, abstractmethod    # adding abstract method into parent class
 
 class Animal(ABC):
+    _id_counter = 1    # adding unique ID identifier
+
     def __init__(self, name, species, animal_group, age, dietary_requirement, enclosure, cry):
+        self.__animal_id = Animal._id_counter
+        Animal._id_counter += 1
+
         self.__name = name
         self.__species = species
         self.__animal_group = animal_group
         self.__age = age
         self.__dietary_requirement = dietary_requirement
         self.__enclosure = enclosure
-        self.__cry = cry
+        self.__enclosure_status = 3    # initialise at maximum cleanliness
 
     # animal class includes attributes applicable to all animals regardless of species.
     # purpose is to capture attributes which are going to be consistently used and will
 
-    def create_animal(self):  # create new animal
-        pass
+    # Unique ID
+    def get_animal_id(self):    # animal unique identifier
+        return self.__animal_id
 
-    # create setters and getters within animal class
-
-    def set_name(self):    # each animal will have a name eg spot, spike, George etc
-        self.__name = input("Enter name: ")
+    # Animal Name
+    def set_name(self, name):    # each animal will have a name eg spot, spike, George etc
+        self.__name = name
 
     def get_name(self):
         return self.__name
 
+    # species
     def set_species(self, species):    # each animal will be part of a species eg parrot and owl are avian species, snake and lizard are reptile species
-        self.__species = input("Enter species: ")
+        self.__species = species
 
     def get_species(self):
         return self.__species
 
+    # group (eg Avian, reptile etc_
     def set_animal_group(self, animal_group):    # eg avian, aquatic, reptile, big cat etc
-        self.__animal_group = input("Select animal group: ")
+        self.__animal_group = animal_group
 
     def get_animal_group(self):
         return self.__animal_group
 
+    # age (NB there is no max age)
     def set_age(self, age):    # at entry each animal will have an age
-        self.__age = input("Enter age: ")
+        self.__age = age
 
     def get_age(self):
         return self.__age
 
+    # dietary requirement
     def set_dietary_requirement(self, dietary_requirement):    # each animal will have a dietary requirement eg seeds and fruit, mice and rats, meat etc
-        self.__dietary_requirement = input("Enter dietary requirements: ")
+        self.__dietary_requirement = dietary_requirement
 
     def get_dietary_requirement(self):
         return self.__dietary_requirement
 
+    # enclosure type
     def set_enclosure(self, enclosure):    # each animal will have an enclosure type
-        self.__enclosure = input("Select enclosure: ")
+        self.__enclosure = enclosure
 
     def get_enclosure(self):
         return self.__enclosure
 
-    def set_cry(self, cry):
-        self.__cry = cry  # to be drawn from child class
-
-    def get_cry(self):
-        return self.__cry
-
-    # max food for all animals has been set to three before refill and enclosure clean will be initiated
-
-    def enclosure_status(self):    # enclosure clean to be made an abstract method.  Enclosure status will be linked to eat.
-        self._enclosure_status = 3
+    # enclosure status
+    def get_enclosure_status(self):
         return self._enclosure_status
-
 
     # will be consistent method across all animals.  Holding in parent class avoids duplication of code.
     # method for eating which will also reduce available food by 1 unit and require refill at 0 units
     # to increase enclosure mess by 1 unit (num units for cleaning enclosure to be max 3)
+    # max food for all animals has been set to three before refill and enclosure clean will be initiated
 
     def eat(self):
         eat = 0
@@ -114,4 +116,6 @@ class Animal(ABC):
     def max_food(self):
         return 3
 
+    def __str__(self):    # string representation
+        return f"[ID {self.__animal_id}] {self.__name} the {self.__species} ({self.__animal_group}) in {self.__enclosure}"
 
