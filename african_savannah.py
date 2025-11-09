@@ -32,7 +32,7 @@ class African_Savannah(Animal):
         self.__african_species = species
 
     def __str__(self):    # adding string method
-        return f"{self.get_name()} the {self.get_species()} lives in enclosure {self.get_enclosure()} and cries '{self.get_cry()}'."
+        return f"{self.get_name()} the {self.get_species()} lives in enclosure {self.get_enclosure()} and cries '{self._Animal__cry}'."
 
     def cry(self):
         sound = self.african_species_dict.get(self.get_species(), {}).get("cry", "Vocalise")

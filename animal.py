@@ -22,6 +22,7 @@ class Animal(ABC):
         self.__age = age
         self.__dietary_requirement = dietary_requirement
         self.__enclosure = enclosure
+        self.__cry = cry
         self.__enclosure_status = 3    # initialise at maximum cleanliness
 
     # animal class includes attributes applicable to all animals regardless of species.
@@ -72,6 +73,14 @@ class Animal(ABC):
 
     def get_enclosure(self):
         return self.__enclosure
+
+    # cry
+
+    def set_cry(self, cry):
+        self._cry = cry
+
+    def get_cry(self):
+        return self._cry
 
     # enclosure status
     def get_enclosure_status(self):
