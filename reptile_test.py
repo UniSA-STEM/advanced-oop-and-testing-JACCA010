@@ -1,3 +1,14 @@
+'''
+File: reptile_test.py
+Description: Test file for reptile_test.
+Author: Catherine Jackson
+ID: 110481962
+Username: jacca010
+This is my own work as defined by the University's Academic Integrity Policy.
+'''
+
+
+
 import unittest
 from reptile import Reptile
 
