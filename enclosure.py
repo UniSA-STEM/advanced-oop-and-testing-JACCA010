@@ -9,6 +9,7 @@ This is my own work as defined by the University's Academic Integrity Policy.
 
 
 class Enclosure:
+    _id_counter = 1  # adding unique ID identifier
 
     # enclosure dictionary
     enclosure_type_dict = {
@@ -33,7 +34,7 @@ class Enclosure:
             "Large": {"animal_groups": ["bird"], "max_animals": 50},
         },
         "Quarantine":  {
-            "Bespoke": {"animal_groups": None, "max_animals": 1
+            "Bespoke": {"animal_groups": None, "max_animals": 1}
         }}
 
 
@@ -67,8 +68,8 @@ class Enclosure:
         # adding a new enclosure type (not already in list)
         else:
             group_list = (
-                self.animal_group if isinstance(self.animal_group, list)
-                else [self.animal_group] if self.animal_group
+                self.__animal_group if isinstance(self.__animal_group, list)
+                else [self.__animal_group] if self.__animal_group
                 else []
             )
             new_enclosure = {
@@ -106,11 +107,63 @@ class Enclosure:
         else:
             return "Full"
 
+    # method to upgrade enclosure once full (if applicable)
+
+    def upgrade_enclosure(self):
+
+        if self.enclosure_capacity() == "Full" and self.__size != "Large":
+            new_size = None
+
+            if self.__size == "Small":
+                new_size = "Medium"
+
+            elif self.__size == "Medium":
+                new_size = "Large"
+
+            # update size and new capacity from dictionary
+
+            type_data = Enclosure.enclosure_type_dict.get(self.__enclosure_type, {})
+            if new_size not in type_data:
+                return self.__size
+
+            self.__size = new_size
+            self.__animal_group = type_data[new_size]["animal_groups"]
+            self.__max_animals = type_data[new_size]["max_animals"]
+            print(f"Enclosure '{self.__enclosure_type}' upgraded to '{new_size}' with capacity {self.__max_animals}.")
+            return self.__size
+
+        elif self.__size == "Large" or self.enclosure_capacity() != "Full":
+
+            print (f"Upgrade not required for enclosure '{self.__enclosure_type}'")
+            return self.__size
+
+    # method to downgrade enclosure if animals reduce (if applicable)
+
+    def downgrade_enclosure(self):
+
+
+    # add move animals to allow transfer between enclosures
+
+
+
+    # add rule to ensure one species only per enclosure
+
+    def check_enclosure_species(self, animal):
+        if not self.__animals:
+            return True
+        return all(existing.species == animal.species for existing in self.__animals)
+
     def __str__(self):
         return(
             f"Enclosure Type: {self.__enclosure_type}\n"
             f"Size: {self.__size}\n"
-            f"Animal Group: {self.animal_group}\n"
+            f"Animal Group: {self.__animal_group}\n"
             f"Maximum Animals: {self.__max_animals}\n"
             f"Current Capacity: {self.enclosure_capacity()}"
-        )
+       )
+
+    # enclosure ID initiated as a property
+
+    @property
+    def enclosure_id(self):
+        return self.__enclosure_id
