@@ -107,47 +107,55 @@ class Enclosure:
         else:
             return "Full"
 
+    # method to summarise the species in the enclosures
+    def summary(self):
+        species_counts = {}
+        for animal in self.__animals:
+            species = animal.get_species()
+            species_counts[species] = species_counts.get(species, 0) + 1
+        return species_counts
+
     # method to upgrade enclosure once full (if applicable)
-
     def upgrade_enclosure(self):
-
         if self.enclosure_capacity() == "Full" and self.__size != "Large":
-            new_size = None
-
             if self.__size == "Small":
-                new_size = "Medium"
-
-
+                return self._apply_size_change("Medium")
             elif self.__size == "Medium":
-                new_size = "Large"
-
-            # update size and new capacity from dictionary
-
-            type_data = Enclosure.enclosure_type_dict.get(self.__enclosure_type, {})
-            if new_size not in type_data:
-                return self.__size
-
-            self.__size = new_size
-            self.__animal_group = type_data[new_size]["animal_groups"]
-            self.__max_animals = type_data[new_size]["max_animals"]
-            print(f"Enclosure '{self.__enclosure_type}' upgraded to '{new_size}' with capacity {self.__max_animals}.")
-            return self.__size
-
+                return self._apply_size_change("Large")
         elif self.__size == "Large" or self.enclosure_capacity() != "Full":
-
             print (f"Upgrade not required for enclosure '{self.__enclosure_type}'")
             return self.__size
 
-    # method to downgrade enclosure if animals reduce (if applicable)
-
+    # method to downgrade enclosure when number of animals in the species reduce
+    # using "species count" class method from Animal class
     def downgrade_enclosure(self):
         if self.__size == "Small":
             print (f"Enclosure '{self.__enclosure_type}' is already at minimum size")
             return self.__size
+        # use count species method
+        species_counts = self.summary()
+        total_animals = sum(species_counts.values())
+        if total_animals <= 10:
+            return self._apply_size_change("Small")
+        elif total_animals <= 30:
+            return self._apply_size_change("Medium")
+        else:
+            print(f"Downgrade not required for enclosure '{self.__enclosure_type}'")
+            return self.__size
 
-
-
-
+    # apply size change method to simplify upgrade and downgrade methods
+    # including validation of size (will also allow new enclosure sizes to be added at a later date)
+    def _apply_size_change(self, new_size: str) -> str:
+        type_data = Enclosure.enclosure_type_dict.get(self.__enclosure_type)
+        if not type_data or new_size not in type_data:
+            print(f"Invalid size '{new_size}' for enclosure '{self.__enclosure_type}'")
+            return self.__size
+        self.__size = new_size
+        self.__animal_group = type_data[new_size]["animal_groups"]
+        self.__max_animals = type_data[new_size]["max_animals"]
+        print(f"Enclosure '{self.__enclosure_type}' set to '{new_size}' "
+              f"with capacity {self.__max_animals}.")
+        return self.__size
 
 
     # add move animals to allow transfer between enclosures

@@ -43,21 +43,21 @@ class Animal(ABC):
         return self.__animal_id
 
     # Animal Name
-    def set_name(self, name):    # each animal will have a name eg spot, spike, George etc
+    def set_name(self, name):    # each animal will have a name for example spot, spike, George etc
         self.__name = name
 
     def get_name(self):
         return self.__name
 
     # species
-    def set_species(self, species):    # each animal will be part of a species eg parrot and owl are avian species, snake and lizard are reptile species
+    def set_species(self, species):    # each animal will be part of a species for example parrot and owl are avian species, snake and lizard are reptile species
         self.__species = species
 
     def get_species(self):
         return self.__species
 
     # group (eg Avian, reptile etc_
-    def set_animal_group(self, animal_group):    # eg avian, aquatic, reptile, big cat etc
+    def set_animal_group(self, animal_group):    # for example avian, aquatic, reptile, big cat etc
         self.__animal_group = animal_group
 
     def get_animal_group(self):
@@ -71,7 +71,7 @@ class Animal(ABC):
         return self.__age
 
     # dietary requirement
-    def set_dietary_requirement(self, dietary_requirement):    # each animal will have a dietary requirement eg seeds and fruit, mice and rats, meat etc
+    def set_dietary_requirement(self, dietary_requirement):    # each animal will have a dietary requirement for example seeds and fruit, mice and rats, meat etc
         self.__dietary_requirement = dietary_requirement
 
     def get_dietary_requirement(self):
