@@ -121,6 +121,10 @@ class Animal(ABC):
     def max_food(self):
         return 3
 
+    @property    # added property
+    def animal_group(self):
+        return self.__animal_group
+
     def __str__(self):    # string representation
         return f"[ID {self.__animal_id}] {self.__name} the {self.__species} ({self.__animal_group}) in {self.__enclosure}"
 
