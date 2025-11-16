@@ -31,9 +31,18 @@ class Enclosure:
             "Small": {"animal_groups": ["bird"], "max_animals": 10},
             "Medium": {"animal_groups": ["bird"], "max_animals": 30},
             "Large": {"animal_groups": ["bird"], "max_animals": 50},
+        },
+        "Quarantine":  {
+            "Bespoke": {"animal_groups": None, "max_animals": 1
         }}
 
+
+
     def __init__(self, enclosure_type, size, animal_group=None, max_animals=0):
+        self.__enclosure_id = Enclosure._id_counter    # enclosure ID added
+        Enclosure._id_counter += 1
+
+
         self.__enclosure_type = enclosure_type
         self.__size = size
         self.__animal_group = animal_group
