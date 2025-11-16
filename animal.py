@@ -11,6 +11,7 @@ from abc import ABC, abstractmethod    # adding abstract method into parent clas
 
 class Animal(ABC):
     _id_counter = 1    # adding unique ID identifier
+    _register = []    # to track all animals (used in counting species)
 
     def __init__(self, name, species, animal_group, age, dietary_requirement, enclosure, cry):
         self.__animal_id = Animal._id_counter
@@ -25,6 +26,14 @@ class Animal(ABC):
         self.__cry = cry
         self.__enclosure_status = 3    # initialise at maximum cleanliness
         self.__food_units = 0    # so that animals can be fed
+
+        # global registry of animals
+        Animal._register.append(self)
+
+    # adding class method for count_species (to be used in enclosure management)
+    @classmethod
+    def count_species(cls, species_name):
+        return sum(1 for animal in cls._register if animal.species == species_name)
 
     # animal class includes attributes applicable to all animals regardless of species.
     # purpose is to capture attributes which are going to be consistently used and will
