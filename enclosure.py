@@ -117,6 +117,7 @@ class Enclosure:
             if self.__size == "Small":
                 new_size = "Medium"
 
+
             elif self.__size == "Medium":
                 new_size = "Large"
 
@@ -140,6 +141,13 @@ class Enclosure:
     # method to downgrade enclosure if animals reduce (if applicable)
 
     def downgrade_enclosure(self):
+        if self.__size == "Small":
+            print (f"Enclosure '{self.__enclosure_type}' is already at minimum size")
+            return self.__size
+
+
+
+
 
 
     # add move animals to allow transfer between enclosures
