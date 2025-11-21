@@ -158,12 +158,30 @@ class Enclosure:
         return self.__size
 
 
-    # add move animals to allow transfer between enclosures
+    # add move animals to allow transfer of an animal between enclosures
+    def move_animals(self, animal, new_enclosure):
+        # check animal in current enclosure before move
+        if animal not in self._animals:
+            print (f"{animal.get_name()} is not in enclosure '{self.__enclosure_type}.")
+            return False
 
+        # check species compatibility
+        if not new_enclosure.check_enclosure_species(animal):
+            print (f"Cannot move {animal.get_name()} - incompatible species.")
+            return False
 
+        # check capacity of new enclosure
+        if len(new_enclosure._Enclosure__animals) >= new_enclosure._Enclosure__max_animals:
+            print (f"Cannot move {animal.get_name()} - enclosure is at maximum capacity.")
+            return False
+
+        # if all checks pass, transfer animal to new enclosure
+        self.__animals.remove(animal)
+        new_enclosure._Enclosure__animals.append(animal)
+        print (f"{animal.get_name()} has been moved form '{self.__enclosure_type} to '{new_enclosure}.")
+        return True
 
     # add rule to ensure one species only per enclosure
-
     def check_enclosure_species(self, animal):
         if not self.__animals:
             return True
@@ -179,7 +197,6 @@ class Enclosure:
        )
 
     # enclosure ID initiated as a property
-
     @property
     def enclosure_id(self):
         return self.__enclosure_id
