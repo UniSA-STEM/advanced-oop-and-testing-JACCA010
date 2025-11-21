@@ -27,6 +27,9 @@ class Animal(ABC):
         self.__enclosure_status = 3    # initialise at maximum cleanliness
         self.__food_units = 0    # so that animals can be fed
 
+        # add animal health history
+        self.__health_history =[]
+
         # global registry of animals
         Animal._register.append(self)
 
@@ -96,11 +99,20 @@ class Animal(ABC):
     def get_enclosure_status(self):
         return self.__enclosure_status
 
-    # will be consistent method across all animals.  Holding in parent class avoids duplication of code.
+    # health record history for animals
+    def add_health_record(self, date, status, notes=""):
+        record = {"date": date, "status": status, "notes": notes}
+        self.__health_history.append(record)
+
+    def get_health_history(self):
+        return list(self.__health_history)
+
+    def latest_health_record(self):
+        return self.__health_history[-1] if self.__health_history else None
+
     # method for eating which will also reduce available food by 1 unit and require refill at 0 units
     # to increase enclosure mess by 1 unit (num units for cleaning enclosure to be max 3)
     # max food for all animals has been set to three before refill and enclosure clean will be initiated
-
     def eat(self):
         if self.__food_units < self.max_food:
             self.__food_units += 1    # food level increases until max food reached
@@ -145,5 +157,9 @@ class Animal(ABC):
         return self.__species
 
     def __str__(self):    # string representation
-        return f"[ID {self.__animal_id}] {self.__name} the {self.__species} ({self.__animal_group}) in {self.__enclosure}"
+        base_info = f"[ID {self.__animal_id}] {self.__name} the {self.__species} ({self.__animal_group}) in {self.__enclosure}"
+        latest = self.latest_health_record()
+        if latest:
+            return f"{base_info} | Health Status: {latest['status']} ({latest['date']})"
+        return base_info
 
