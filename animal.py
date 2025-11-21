@@ -38,6 +38,21 @@ class Animal(ABC):
     def count_species(cls, species_name):
         return sum(1 for animal in cls._register if animal.species == species_name)
 
+    # adding class method to add and remove animals and return list of all animals
+    @classmethod
+    def add_animal(cls, animal):
+        if animal not in cls._register:
+            cls._register.append(animal)
+
+    @classmethod
+    def remove_animal(cls, animal):
+        if animal in cls._register:
+            cls._register.remove(animal)
+
+    @classmethod
+    def get_all_animals(cls):
+       return list(cls._register)
+
     # animal class includes attributes applicable to all animals regardless of species.
     # purpose is to capture attributes which are going to be consistently used and will
 
@@ -88,7 +103,6 @@ class Animal(ABC):
         return self.__enclosure
 
     # cry
-
     def set_cry(self, cry):
         self.__cry = cry
 
@@ -127,7 +141,6 @@ class Animal(ABC):
             print (f"{self.__name}'s {self.__enclosure} is messy. Please clean before next feed.")
 
     # clean enclosure (automatically resets enclosure status)
-
     def clean_enclosure(self):
         self.__enclosure_status = 3
         return f"{self.__name}'s {self.__enclosure} has been cleaned."
