@@ -48,5 +48,11 @@ class TestAnimalClass(unittest.TestCase):
         self.assertIn("Sample", str(self.animal))
         self.assertIn("SampleEnclosure", str(self.animal))
 
+    def test_clean_enclosure(self):
+        self.animal.eat()
+        self.assertEqual(self.animal.get_enclosure_status(), 2)
+        self.animal.clean_enclosure()
+        self.assertEqual(self.animal.get_enclosure_status(), 3)
+
 if __name__ == "__main__":
     unittest.main()

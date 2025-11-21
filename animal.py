@@ -114,6 +114,12 @@ class Animal(ABC):
         if self.__enclosure_status == 0:
             print (f"{self.__name}'s {self.__enclosure} is messy. Please clean before next feed.")
 
+    # clean enclosure (automatically resets enclosure status)
+
+    def clean_enclosure(self):
+        self.__enclosure_status = 3
+        return f"{self.__name}'s {self.__enclosure} has been cleaned."
+
     @abstractmethod
     def cry(self):
         pass    # to be defined in child class
