@@ -178,7 +178,7 @@ class Enclosure:
         # if all checks pass, transfer animal to new enclosure
         self.__animals.remove(animal)
         new_enclosure._Enclosure__animals.append(animal)
-        print (f"{animal.get_name()} has been moved from '{self.__enclosure_type} to '{new_enclosure_type}.")
+        print (f"{animal.get_name()} has been moved from '{self.__enclosure_type} to '{new_enclosure.__enclosure_type}.")
         return True
 
     # add rule to ensure one species only per enclosure

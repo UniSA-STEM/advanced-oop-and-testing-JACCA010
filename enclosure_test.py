@@ -24,6 +24,12 @@ class TestEnclosure(unittest.TestCase):
             self.owl = MockAnimal("Hoobert", "Owl", "bird", 5, "Mice", "Aviary", "Hoot")
             self.zebra = MockAnimal("Stripez", "Zebra", "african savannah", 3, "assorted grasses", "Savannah", "Vocalise")
 
+        def test_enclosure_id_unique(self):
+            e1 = Enclosure("Aviary", "Small", "bird", 10)
+            e2 = Enclosure("Pond", "Small", "amphibian", 10)
+            e3 = Enclosure("Savannah", "Medium", "african savannah", 30)
+            self.assertNotEqual(e1.enclosure_id, e2.enclosure_id, e3.enclosure_id)
+
         def test_add_animal_and_summary(self):
             self.aviary_small.add_animal(self.owl)
             summary = self.aviary_small.summary()
@@ -60,6 +66,23 @@ class TestEnclosure(unittest.TestCase):
             self.savannah_medium.add_animal(self.zebra)
             self.aviary_small.add_animal(self.owl)
             moved = self.aviary_small.move_animals(self.owl, self.savannah_medium)
+            self.assertFalse(moved)
+
+        # add edge case to test maximum capacity
+        def test_add_animal_beyond_capacity(self):
+            for i in range(10):
+                self.aviary_small.add_animal(MockAnimal(f"Bird{i}", "Owl", "bird", 1, "Mice", "Aviary", "Hoot"))
+            # Try adding one more
+            extra_bird = MockAnimal("Extra", "Owl", "bird", 1, "Mice", "Aviary", "Hoot")
+            self.aviary_small.add_animal(extra_bird)
+            summary = self.aviary_small.summary()
+            # Should still only have 10 animals
+            total = sum(summary.values())
+            self.assertEqual(total, 10)
+
+        # add edge case to test moving an animal not found
+        def test_move_animal_not_in_source(self):
+            moved = self.aviary_small.move_animals(self.owl, self.pond_small)
             self.assertFalse(moved)
 
 
