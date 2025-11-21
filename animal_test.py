@@ -54,5 +54,25 @@ class TestAnimalClass(unittest.TestCase):
         self.animal.clean_enclosure()
         self.assertEqual(self.animal.get_enclosure_status(), 3)
 
+    def test_add_health_record_and_latest(self):
+        self.animal.add_health_record("01-DEC-2025", "Healthy", "Routine check-up")
+        self.animal.add_health_record("15-JUN-2025", "Injured", "Minor paw cut treated")
+        latest = self.animal.latest_health_record()
+        self.assertEqual(latest["status"], "Injured")
+        self.assertEqual(latest["date"], "15-JUN-2025")
+        self.assertIn("Minor paw cut", latest["notes"])
+
+    def test_get_health_history(self):
+        self.animal.add_health_record("07-MAY-2025", "Healthy", "Routine check-up")
+        history = self.animal.get_health_history()
+        self.assertEqual(len(history), 1)
+        self.assertEqual(history[0]["status"], "Healthy")
+
+    def test_str_output_with_health(self):
+        self.animal.add_health_record("15-JUN-2025", "Injured", "Minor paw cut treated")
+        output = str(self.animal)
+        self.assertIn("Health Status: Injured", output)
+        self.assertIn("15-JUN-2025", output)
+
 if __name__ == "__main__":
     unittest.main()
