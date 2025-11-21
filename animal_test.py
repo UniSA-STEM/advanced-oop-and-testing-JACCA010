@@ -1,3 +1,13 @@
+'''
+File: animal_test.py
+Description: Test file for animal_class.
+Author: Catherine Jackson
+ID: 110481962
+Username: jacca010
+This is my own work as defined by the University's Academic Integrity Policy.
+'''
+
+
 import unittest
 
 from animal import Animal
@@ -73,6 +83,29 @@ class TestAnimalClass(unittest.TestCase):
         output = str(self.animal)
         self.assertIn("Health Status: Injured", output)
         self.assertIn("15-JUN-2025", output)
+
+    def test_add_animal(self):
+        # Reset registry to as this is a standalone test
+        Animal._register = []
+
+        # Create two animals
+        a1 = MockAnimal("George", "Lion", "african savannah", 5, "meat", "Savannah", "Roar")
+        a2 = MockAnimal("Simba", "Lion", "african savannah", 4, "meat", "Savannah", "Roar")
+
+        # Registry should contain both animals
+        self.assertIn(a1, Animal.get_all_animals())
+        self.assertIn(a2, Animal.get_all_animals())
+
+        # animal should not duplicate
+        Animal.add_animal(a1)
+        count = Animal.get_all_animals().count(a1)
+        self.assertEqual(count, 1)  # still only one instance
+
+        # Remove one animal
+        Animal.remove_animal(a1)
+        self.assertNotIn(a1, Animal.get_all_animals())
+        self.assertIn(a2, Animal.get_all_animals())
+
 
 if __name__ == "__main__":
     unittest.main()
