@@ -140,6 +140,10 @@ class Animal(ABC):
     def animal_group(self):
         return self.__animal_group
 
+    @property
+    def species(self):
+        return self.__species
+
     def __str__(self):    # string representation
         return f"[ID {self.__animal_id}] {self.__name} the {self.__species} ({self.__animal_group}) in {self.__enclosure}"
 
