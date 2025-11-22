@@ -8,7 +8,8 @@ This is my own work as defined by the University's Academic Integrity Policy.
 '''
 
 
-from animal import Animal
+from JACCA010_PYTHON_UPLOAD.Animal.animal import Animal
+
 class African_Savannah(Animal):
     # species dictionary can be updated as additional african savannah animals are added to the zoo
 

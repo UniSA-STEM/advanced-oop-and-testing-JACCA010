@@ -9,8 +9,9 @@ This is my own work as defined by the University's Academic Integrity Policy.
 
 
 import unittest
-from enclosure import Enclosure
-from animal import Animal
+from JACCA010_PYTHON_UPLOAD.Enclosure.enclosure import Enclosure
+from JACCA010_PYTHON_UPLOAD.Animal.animal import Animal
+
 
 # Mock child class for testing purposes only
 

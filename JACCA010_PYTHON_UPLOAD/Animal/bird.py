@@ -7,7 +7,7 @@ Username: jacca010
 This is my own work as defined by the University's Academic Integrity Policy.
 '''
 
-from animal import Animal
+from JACCA010_PYTHON_UPLOAD.Animal.animal import Animal
 
 class Bird(Animal):
     def __init__(self, name, species, animal_group, age, dietary_requirement,enclosure, cry, flight_ability=None):
@@ -26,19 +26,25 @@ class Bird(Animal):
             sound = "Hoot"
         else:
             sound = "Chirrup"
-        print (f"{self.get_name()} {sound}s!")
+        cry_output = (f"{self.get_name()} {sound}s!")
+        print (cry_output)
+        return cry_output
 
     def move(self):
         if self.flight_ability() == "flightless":
-            print (f"{self.get_name()} is a flightless bird.")
+            move_output = (f"{self.get_name()} is a flightless bird.")
         else:
-            print (f"{self.get_name()} is flying!")
+            move_output = (f"{self.get_name()} is flying!")
+        print (move_output)
+        return move_output
 
     def sleep(self):
-        if self.get_species != "owl":    # given owls hunt at night and sleep during the day have created day/night sleep.
-            print (f"{self.get_name()} has perched for the night.")
+        if self.get_species() != "owl":    # given owls hunt at night and sleep during the day have created day/night sleep.
+            sleep_output = (f"{self.get_name()} has perched for the night.")
         else:
-            print (f"{self.get_name()} has perched for the day.")
+            sleep_output = (f"{self.get_name()} has perched for the day.")
+        print (sleep_output)
+        return sleep_output
 
         # future iteration of zoo management system could include nocturnal animals as a separate class
 

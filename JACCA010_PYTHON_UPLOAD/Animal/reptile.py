@@ -7,7 +7,7 @@ Username: jacca010
 This is my own work as defined by the University's Academic Integrity Policy.
 '''
 
-from animal import Animal
+from JACCA010_PYTHON_UPLOAD.Animal.animal import Animal
 
 class Reptile(Animal):
     def __init__(self, name, species, animal_group, age, dietary_requirement,enclosure, cry):
@@ -17,6 +17,9 @@ class Reptile(Animal):
         return f"{self.get_name()} the {self.get_species()} lives in enclosure {self.get_enclosure()} and cries '{self.cry()}'."
 
     def cry(self):    # to be made species dependant and allow for edits as new animals added
+        species = self.get_species()
+        if species is None:
+            return None
         if self.get_species() == "snake":
             sound = "Hiss"
         elif self.get_species() == "lizard":
@@ -27,24 +30,32 @@ class Reptile(Animal):
             sound = "Ribbet"
         else:
             sound = "Puff"
-        print (f"{self.get_name()} {sound}s!")
+        reptile_sound = (f"{self.get_name()} {sound}s!")
+        print (reptile_sound)
+        return reptile_sound
 
     def move(self):    # simple movements based on species type
         if self.get_species() == "snake":
-            print (f"{self.get_name()} is slithering.")
+            reptile_move = (f"{self.get_name()} is slithering.")
         elif self.get_species() == "crocodile":
-            print (f"{self.get_name()} is stalking.")
+            reptile_move = (f"{self.get_name()} is stalking.")
         else:
-            print (f"{self.get_name()} is walking.")
+            reptile_move = (f"{self.get_name()} is walking.")
+        print (reptile_move)
+        return reptile_move
 
     def sleep(self):    # simple sleep based on species type
         if self.get_species() == "snake":
-            print (f"{self.get_name()} has coiled up and is sleeping.")
+            reptile_sleep = (f"{self.get_name()} has coiled up and is sleeping.")
         else:
-            print (f"{self.get_name()} is sleeping.")
+            reptile_sleep = (f"{self.get_name()} is sleeping.")
+        print (reptile_sleep)
+        return reptile_sleep
 
     def sunning(self):    # reptiles like to rest in the sun
         if self.get_species() == "snake" or self.get_species == "lizard":
-            print (f"{self.get_name()} is resting on a sunny rock.")
+            sunning = (f"{self.get_name()} is resting on a sunny rock.")
         else:
-            print (f"{self.get_name()} is warming itself in the sun.")
+            sunning = (f"{self.get_name()} is warming itself in the sun.")
+        print (sunning)
+        return sunning

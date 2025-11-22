@@ -7,17 +7,17 @@ Username: jacca010
 This is my own work as defined by the University's Academic Integrity Policy.
 '''
 
-from administration_staff import Administration
-from african_savannah import African_Savannah
-from animal import Animal
-from bird import Bird
-from enclosure import Enclosure
-from maintenance_staff import Maintenance
-from reptile import Reptile
-from staff import Staff
-from veterinarian_staff import Veterinarian
-from zoo import Zoo
-from zoo_keeper_staff import Zoo_keeper
+from JACCA010_PYTHON_UPLOAD.Staff.administration_staff import Administration
+from JACCA010_PYTHON_UPLOAD.Animal.african_savannah import African_Savannah
+from JACCA010_PYTHON_UPLOAD.Animal.animal import Animal
+from JACCA010_PYTHON_UPLOAD.Animal.bird import Bird
+from JACCA010_PYTHON_UPLOAD.Enclosure.enclosure import Enclosure
+from JACCA010_PYTHON_UPLOAD.Staff.maintenance_staff import Maintenance
+from JACCA010_PYTHON_UPLOAD.Animal.reptile import Reptile
+from JACCA010_PYTHON_UPLOAD.Staff.staff import Staff
+from JACCA010_PYTHON_UPLOAD.Staff.veterinarian_staff import Veterinarian
+from JACCA010_PYTHON_UPLOAD.Enclosure.zoo import Zoo
+from JACCA010_PYTHON_UPLOAD.Staff.zoo_keeper_staff import Zoo_keeper
 
 def run_tests():
     # create zoo

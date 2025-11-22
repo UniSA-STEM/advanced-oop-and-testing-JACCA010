@@ -7,7 +7,7 @@ Username: jacca010
 This is my own work as defined by the University's Academic Integrity Policy.
 '''
 
-from staff import Staff
+from JACCA010_PYTHON_UPLOAD.Staff.staff import Staff
 
 class Veterinarian(Staff):
 
