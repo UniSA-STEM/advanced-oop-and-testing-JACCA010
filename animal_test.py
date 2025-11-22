@@ -67,21 +67,21 @@ class TestAnimalClass(unittest.TestCase):
     def test_add_health_record_and_latest(self):
         self.animal.add_health_record("01-DEC-2025", "Healthy", "Routine check-up")
         self.animal.add_health_record("15-JUN-2025", "Injured", "Minor paw cut treated")
-        latest = self.animal.latest_health_record()
-        self.assertEqual(latest["status"], "Injured")
-        self.assertEqual(latest["date"], "15-JUN-2025")
-        self.assertIn("Minor paw cut", latest["notes"])
+        latest = self.animal.latest_health_record_str()
+        self.assertIn("Status: Injured", latest)
+        self.assertIn("15-JUN-2025", latest)
+        self.assertIn("Minor paw cut", latest)
 
     def test_get_health_history(self):
         self.animal.add_health_record("07-MAY-2025", "Healthy", "Routine check-up")
-        history = self.animal.get_health_history()
+        history = self.animal.get_health_history_str()
         self.assertEqual(len(history), 1)
-        self.assertEqual(history[0]["status"], "Healthy")
+        self.assertIn("Status: Healthy", history[0])
 
     def test_str_output_with_health(self):
         self.animal.add_health_record("15-JUN-2025", "Injured", "Minor paw cut treated")
         output = str(self.animal)
-        self.assertIn("Health Status: Injured", output)
+        self.assertIn("Status: Injured", output)
         self.assertIn("15-JUN-2025", output)
 
     def test_add_animal(self):

@@ -18,5 +18,5 @@ class Administration(Staff):
         return (
             f"ID: {self.staff_id}\n"
             f"Name: {self.first_name} {self.surname}\n"
-            f"Occupation: {self.get_occupation()}"
+            f"Occupation: {self.get_occupation}"
         )

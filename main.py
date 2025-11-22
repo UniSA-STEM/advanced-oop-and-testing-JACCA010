@@ -51,6 +51,75 @@ def run_tests():
     savannah.add_animal(zebra)
     print(savannah)
 
+    # boutique tests for animal class testing (drawn from unittest cases)
+
+    # Mock child class for testing purposes only
+    class MockAnimal(Animal):
+        def cry(self): return "Test cry"
+        def move(self): return "Test move"
+        def sleep(self): return "Test sleep"
+
+    # Unique ID test
+    a1 = MockAnimal("Sample", "SpeciesA", "GroupA", 5, "FoodA", "EnclosureA", "CryA")
+    a2 = MockAnimal("Another", "SpeciesB", "GroupB", 3, "FoodB", "EnclosureB", "CryB")
+    print("[Unique ID Test]")
+    print("ID1:", a1.get_animal_id(), "ID2:", a2.get_animal_id())
+    assert a1.get_animal_id() != a2.get_animal_id()
+
+    # Getter test
+    print("[Getter Test]")
+    print("Name:", a1.get_name(), "Species:", a1.get_species(), "Enclosure:", a1.get_enclosure())
+    assert a1.get_name() == "Sample"
+    assert a1.get_species() == "SpeciesA"
+    assert a1.get_enclosure() == "EnclosureA"
+
+    # Enclosure status test
+    print("[Enclosure Status Test]")
+    print("Initial status:", a1.get_enclosure_status())
+    a1.eat()
+    print("After eating:", a1.get_enclosure_status())
+    assert a1.get_enclosure_status() == 2
+
+    # Clean enclosure test
+    print("[Clean Enclosure Test]")
+    a1.clean_enclosure()
+    print("After cleaning:", a1.get_enclosure_status())
+    assert a1.get_enclosure_status() == 3
+
+    # Health record test (dict version)
+    print("\n[Health Record Test - Dict]")
+    a1.add_health_record("01-DEC-2025", "Healthy", "Routine check-up")
+    a1.add_health_record("15-JUN-2025", "Injured", "Minor hoof injury treated")
+    latest = a1.latest_health_record_dict()
+    print("Latest record (dict):", latest)
+    assert latest["Status"] == "Injured"
+    assert "Minor hoof injury treated" in latest["Notes"]
+
+    # Health record test (string version)
+    print("\n[Health Record Test - String]")
+    print("Latest record (string):", a1.latest_health_record_str())
+    print("Full history (string):")
+    for record in a1.get_health_history_str():
+        print("-", record)
+
+    # Health record test with real animal
+    print("\n[Health Record Test with Animal]")
+    zebra = African_Savannah("Stripez", "zebra", "African Savannah", 4,
+                             "assorted grasses", "Savannah", "Vocalise")
+    zebra.add_health_record("15-JUN-2025", "Injured", "Minor hoof injury treated")
+    zebra.add_health_record("01-DEC-2025", "Healthy", "Routine check-up")
+    print("Latest zebra record:", zebra.latest_health_record_str())
+    print("Zebra history:")
+    for record in zebra.get_health_history_str():
+        print("-", record)
+
+    # Registry test
+    print("[Registry Test]")
+    print("Registry:")
+    for animal in Animal.get_all_animals():
+        print("-", animal.get_name(), "|", animal.get_species(), "|", animal.get_enclosure())
+
+    print("\n=== All boutique tests completed successfully ===")
 
 if __name__ == "__main__":
     run_tests()

@@ -115,14 +115,35 @@ class Animal(ABC):
 
     # health record history for animals
     def add_health_record(self, date, status, notes=""):
-        record = {"date": date, "status": status, "notes": notes}
+        record = {
+            "date": date,
+            "Status": status,
+            "Notes": notes
+        }
         self.__health_history.append(record)
 
-    def get_health_history(self):
+    def latest_health_record_dict(self):
+        if not self.__health_history:
+            return None
+        return self.__health_history[-1]
+
+    def get_health_history_dict(self):
         return list(self.__health_history)
 
-    def latest_health_record(self):
-        return self.__health_history[-1] if self.__health_history else None
+    # updated health record with string formatting
+    def latest_health_record_str(self):
+        if not self.__health_history:
+            return "No health records available."
+        latest = self.__health_history[-1]
+        return f"{latest['date']} | Status: {latest['Status']} | Notes: {latest['Notes']}"
+
+    def get_health_history_str(self):
+        if not self.__health_history:
+            return ["No health records available."]
+        return [
+            f"{record['date']} | Status: {record['Status']} | Notes: {record['Notes']}"
+            for record in self.__health_history
+        ]
 
     # method for eating which will also reduce available food by 1 unit and require refill at 0 units
     # to increase enclosure mess by 1 unit (num units for cleaning enclosure to be max 3)
@@ -171,7 +192,7 @@ class Animal(ABC):
 
     def __str__(self):    # string representation
         base_info = f"[ID {self.__animal_id}] {self.__name} the {self.__species} ({self.__animal_group}) in {self.__enclosure}"
-        latest = self.latest_health_record()
+        latest = self.latest_health_record_dict()
         if latest:
-            return f"{base_info} | Health Status: {latest['status']} ({latest['date']})"
+            return f"{base_info} | Health Status: {latest['Status']} ({latest['date']})"
         return base_info
