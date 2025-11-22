@@ -11,7 +11,7 @@ class Staff:
     _id_counter = 1
     _register = []    # register of staff
 
-    def __init__(self, staff_id, first_name, surname, occupation):
+    def __init__(self, first_name, surname, occupation):
         self.__staff_id = Staff._id_counter
         Staff._id_counter += 1
         self.__first_name = first_name
@@ -24,7 +24,7 @@ class Staff:
     # adding class method for count_staff (for personnel management)
     @classmethod
     def count_staff(cls, staff_id):
-        return sum(1 for staff_id in cls._register if staff.get__id == staff_id)
+        return sum(1 for staff_id in cls._register if staff.get_staff_id() == staff_id)
 
     # adding class method to add and remove staff and return list of all staff
     @classmethod
@@ -60,11 +60,17 @@ class Staff:
     def staff_id(self):
         return self.__staff_id
 
+    @property
     def first_name(self):
         return self.__first_name
 
+    @property
     def surname(self):
         return self.__surname
+
+    @property
+    def occupation(self):
+        return self.__occupation
 
     def __str__(self):
         return (

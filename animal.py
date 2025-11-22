@@ -175,4 +175,3 @@ class Animal(ABC):
         if latest:
             return f"{base_info} | Health Status: {latest['status']} ({latest['date']})"
         return base_info
-

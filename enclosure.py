@@ -7,7 +7,6 @@ Username: jacca010
 This is my own work as defined by the University's Academic Integrity Policy.
 '''
 
-
 class Enclosure:
     _id_counter = 1  # adding unique ID identifier
 
