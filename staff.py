@@ -8,10 +8,12 @@ This is my own work as defined by the University's Academic Integrity Policy.
 '''
 
 class Staff:
+    _id_counter = 1
     _register = []    # register of staff
 
     def __init__(self, staff_id, first_name, surname, occupation):
-        self.__staff_id = staff_id
+        self.__staff_id = Staff._id_counter
+        Staff._id_counter += 1
         self.__first_name = first_name
         self.__surname = surname
         self.__occupation = occupation

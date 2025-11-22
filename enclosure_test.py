@@ -1,3 +1,13 @@
+'''
+File: enclosure_test.py
+Description: Test file for enclosure_tests
+Author: Catherine Jackson
+ID: 110481962
+Username: jacca010
+This is my own work as defined by the University's Academic Integrity Policy.
+'''
+
+
 import unittest
 from enclosure import Enclosure
 from animal import Animal

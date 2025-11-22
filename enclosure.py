@@ -157,7 +157,6 @@ class Enclosure:
               f"with capacity {self.__max_animals}.")
         return self.__size
 
-
     # add move animals to allow transfer of an animal between enclosures
     def move_animals(self, animal, new_enclosure):
         # check animal in current enclosure before move
