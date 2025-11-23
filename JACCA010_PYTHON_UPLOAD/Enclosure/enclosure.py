@@ -20,7 +20,7 @@ class Enclosure:
         "Pond": {
             "Small": {"animal_groups": ["reptile", "amphibian", "bird"], "max_animals": 10},
             "Medium": {"animal_groups": ["reptile", "amphibian", "bird"], "max_animals": 30},
-            "Large": {"animal_groups": ["reptile", "amphibian", "bird"], "max_animals": 30},
+            "Large": {"animal_groups": ["reptile", "amphibian", "bird"], "max_animals": 50},
         },
         "Savannah": {
             "Small": {"animal_groups": ["african savannah"], "max_animals": 10},
